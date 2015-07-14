@@ -1,0 +1,129 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+ $navbar-height: 70px;
+ $navbar-default-color: #fcfff5;
+ $navbar-default-link-color: #fcfff5;
+ $navbar-default-link-hover-color: #d1dbbd;
+ $navbar-default-link-active-color: #d1dbbd;
+ $navbar-default-bg: #193441;
+ $navbar-default-link-active-bg: darken($navbar-default-bg, 10%);
+ $element-bg-color: $navbar-default-color;
+ $well-bg: #91aa9d;
+ 
+ //$navbar-default-border: darken($navbar-default-bg, 30%);
+
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'font-awesome';
+@import 'summernote';
+
+
+body{
+	font-family: 'Quicksand', sans-serif;
+	margin-top: 90px;
+	background-color: #d1dbbd;
+
+	.alert{
+		margin: 0 -18px;
+		margin-bottom: 18px;
+	}
+
+	.home.movies{
+		margin-left: 10px;
+
+		a .thumbnail:hover{
+			background-color: #91aa9d;
+			padding : 5px;
+		}
+	}
+
+	.navbar-brand{
+		margin-right: 5em !important;
+	}
+
+	.navbar-right{
+		margin-right: 1em !important; 
+	}
+
+	.center-block{
+		float: none !important;
+	}
+
+	.movie{
+		background-color: $element-bg-color;
+		margin-top: 20px;
+		padding: 15px;
+		border-radius: 5px;
+
+		.title {
+			margin-top: 0px;
+		}
+
+		#description{
+			font-size: 1.5em !important;	
+			text-align: justify;																																																																																																																																																																																																																									
+		}
+
+		.review.well{
+			color: $navbar-default-color;
+		}
+	}
+
+	.container form{
+		padding: 25px;
+		border-radius: 3px;
+		margin-top: 5px;
+		background-color: $navbar-default-color;
+	}
+
+	#imdb_creator{
+		margin-top: 25px;
+		float: right !important;
+	}
+
+	#imdb_form{
+		//display: none;
+	}
+
+	.imdb_movies_list{
+		padding: 25px;
+		background-color: $navbar-default-color;
+		
+		tbody tr:hover{
+			background-color: #d1dbbd;
+		}
+	}
+
+	.devise {
+		margin-top: 40px;
+	
+		
+		form{
+			h2{
+				
+				background-color: #91aa9d;
+				margin-left: -20px;
+				margin: -25px -25px 15px -25px;
+				border-radius: 5px 5px 0 0;
+				padding: 15px 0;
+				color: $navbar-default-color;
+			}	
+		}
+		
+	}
+}

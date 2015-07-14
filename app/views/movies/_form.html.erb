@@ -1,0 +1,18 @@
+<%= simple_form_for @movie do |f| %>
+	<div class="form-inputs">
+		<%= f.input :title %>
+		<%= f.input :description, as: :summernote, input_html: {rows: 8} %>
+		<%= f.input :director %>
+		<%= f.input :release, label: 'Released Year' %>
+		<%= f.input :duration, label: 'Length' %>
+		<%= f.input :rating, as: :select, collection: Movie.rating %>
+		<%= f.input :image, as: :file, label: 'Movie Poster' %>
+	</div>
+	<br>
+	<div class="form-buttons">
+		<%= f.button :submit, class: 'btn btn-primary' %>
+		<%= link_to "Cancel", :back, class: 'btn btn-danger' %>
+	</div>
+<% end -%>
+<br>
+

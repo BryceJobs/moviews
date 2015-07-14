@@ -1,0 +1,16 @@
+<div class="home movies">	
+	<% @movies.reverse.each_slice(4) do |movies| %>
+		<div class="row center-block">	
+			<% movies.each do |movie| %>
+				<div class="col-md-3 ">
+					<%= link_to movie_path(movie) do %>
+						<%= image_tag movie.image(:thumb), class: 'img-responsive thumbnail img-rounded' do %>
+									
+						<% end -%>
+					<% end -%>
+				</div>
+			<% end -%>
+		</div>
+	<% end -%>
+</div>
+

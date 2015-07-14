@@ -1,0 +1,111 @@
+
+
+<div class="row movie">
+	<div class="col-md-4 thumbnail">
+		<%= image_tag @movie.image(:medium), class: "img-responsive img-rounded" %>
+	</div>
+	<div class="col-md-8">
+		<div class="row">
+			<div class="col-md-9">
+				<h1 class="title"><%= @movie.title %>  </h1><br>
+			</div>
+			<div class="col-md-3">
+				<a class="btn btn-primary pull-right" data-toggle="modal" href='#trailer'> <i class="fa fa-play"></i> Watch trailer</a>
+				<div class="modal fade" id="trailer">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title">Trailer for : <%= @movie.title %></h4>
+							</div>
+							<div class="modal-body">
+								<%= @movie.trailer_url.html_safe unless @movie.trailer_url.nil? %>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+		<p id="description"><%= sanitize @movie.description %></p><br>
+		<div class="panel panel-default">
+			<!-- Default panel contents -->
+			<div class="panel-heading">details of the movie " <%= @movie.title %> "</div>
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Director</th>
+							<td><%= @movie.director %></td>
+						</tr>
+						<tr>
+							<th>Rating</th>
+							<td><%= @movie.rating %></td>
+						</tr>
+						<tr>
+							<th>Length</th>
+							<td><%= @movie.duration + "#{@movie.duration.eql?('NA') ? '' : ' mins'}" %> </td>
+						</tr>
+						<tr>
+							<th>Released Date</th>
+							<td><%= @movie.release %></td>
+						</tr>
+					</tbody>
+				</table>
+		</div>
+
+		<table class="table table-bordered">
+			<tr>
+				<th>Average review  (<%= @movie.average_rating * 2 || 0.00 %>/10.0)</th>
+				<th>IMDB review (<%= @movie.imdb_rating || 0.00 %>/10.0)</th>
+			</tr>
+			<tr>
+				<td class='star-rating' data-score="<%= @movie.average_rating %>"></td>
+				<td class='star-rating' data-score="<%= @movie.rating_from_imdb / 2 %>"></td>
+			</tr>
+		</table>
+	</div>
+	
+
+	<div id="reviews" class="clearfix col-md-12">
+		<hr>
+		<h3><%= pluralize @movie.reviews.count , 'Review' %></h3>
+		<hr>
+		<%= render @movie.reviews.reverse %>
+		<% if user_signed_in? %>
+			<% if current_user.reviewed(@movie) %>
+				<div class="text-center">
+					<br>
+					<h4>You have already reviewed this movie we are grateful for your contribution</h4>
+					<i class="fa fa-smile-o fa-2x">Thank You</i>
+				</div>
+			<% else %>
+				<br>
+				<h3>New review</h3>
+				<hr>
+				<%= render 'reviews/form' %>
+			<% end -%>
+		<% else %>
+			<div class="text-center">
+				<h4>you need to log in before you can review</h4>
+				<%= link_to "Log in", new_user_session_path, class:"btn btn-info" %>
+			</div>
+		<% end -%>
+	</div>
+</div>
+<br><br>
+
+<script>
+	$(".star-rating").raty({
+		readOnly: true,
+		halfShow: true,
+		path: '/assets/',
+		score: function(){
+			return $(this).attr('data-score');
+		}
+	});
+</script>
+
+
+

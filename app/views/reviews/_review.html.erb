@@ -1,0 +1,15 @@
+posted by <%= review.user.username %> | <%= time_ago_in_words(review.created_at)  %> ago
+<div class="review well well-sm">
+	<div class="star-rating" data-score="<%= review.rating %>"></div>
+	<p><%= review.comment %></p>
+</div>
+
+<script>
+	$(".star-rating").raty({
+		readOnly: true,
+		path: '/assets/',
+		score: function(){
+			return $(this).attr('data-score');
+		}
+	})
+</script>

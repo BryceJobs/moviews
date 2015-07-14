@@ -1,0 +1,51 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="<%= root_path %>">Moviews</a>
+	</div>
+
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav menu-elements">
+			<li class="active"><a href="<%= movies_path %>">Movies</a></li>
+			<li><a href="#">About us</a></li>
+		</ul>
+
+	
+		<% unless user_signed_in? %>
+			<ul class="nav navbar-nav navbar-right">
+				<li><%= link_to "Log In", new_user_session_path %></li>
+				<li><%= link_to "Sign Up", new_user_registration_path %></li>
+			</ul>
+		<% else %>	
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><%= link_to "Edit Account", edit_user_registration_path %></li>
+						<li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+					</ul>
+				</li>
+			</ul>
+
+			<div class="navbar-right">
+				<a href="<%= new_movie_path %>" class="navbar-btn btn btn-primary">New movie</a>
+			</div>
+		<% end -%>
+		
+
+
+		<form class="navbar-form navbar-right" role="search">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search">
+			</div>
+			<button type="submit" class="btn btn-default">Submit</button>
+		</form>
+	</div><!-- /.navbar-collapse -->
+</nav>

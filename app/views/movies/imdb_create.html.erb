@@ -1,0 +1,54 @@
+<%= link_to :back, class: "btn btn-default" do %>
+	<i class="fa fa-arrow-left"> Back</i>
+<% end -%>
+<div class="imdb_movies_list">
+	<h1 class="text-center">Choose your movie from the list</h1><br><br>
+	<table class="table table-striped table-bordered table-responsive" id="movies_table">
+		<thead>
+			<tr>
+				<th>Year</th>
+				<th>Title</th>
+				<th>IMDB ID</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+
+		<tfoot>
+			<tr>
+				<th>Year</th>
+				<th>Title</th>
+				<th>IMDB ID</th>
+				<th>Actions</th>
+			</tr>
+		</tfoot>
+
+		<tbody>
+			<% @imdb_movies.each do  |movie| %>
+				<tr>
+					<td><%= movie[:year] %></td>
+					<td><%= sanitize movie[:title] %></td>
+					<td><%= movie[:imdb_id] %></td>
+					<td><%= link_to "Save", save_from_imdb_movies_path(imdb_id: movie[:imdb_id]), method: :post,
+					 class: "btn btn-info" %></td>
+				</tr>
+			<% end -%>
+		</tbody>
+
+	</table>
+
+</div>
+<br><br>
+
+
+<script>
+	$(document).ready(function(){
+		$('#movies_table').DataTable({
+			"order": []
+		});
+	});
+</script>
+
+
+
+
+

@@ -1,0 +1,17 @@
+<div class="col-md-8 center-block">
+	<div class="row">
+		<h1 class= "text-left use-imdb col-md-9">Create a Movie</h1>
+		<div class="col-md-3 pull-right">
+			<a href="#" class="btn btn-default" id="imdb_creator">Use IMDB</a>
+		</div>
+	</div>
+	<%= render 'form' %>
+
+	<div id="imdb_form">
+		<%= simple_form_for :imdb_search, url: search_imdb_new_movie_path, method: :get do |f| -%>
+		  <%= f.input :title %>
+		  <%= f.button :submit, "Search IMDB" %>
+		<% end %>
+	</div>
+</div>
+
